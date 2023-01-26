@@ -8,7 +8,6 @@ import Dashboard from "./components/DashboardPage/Dashboard";
 import Home from "./components/HomePage/Home";
 import Login from "./components/LoginPage/Login";
 import Signup from "./components/SignupPage/Signup";
-import Database from "./database/Database";
 
 function Body() {
   return (
