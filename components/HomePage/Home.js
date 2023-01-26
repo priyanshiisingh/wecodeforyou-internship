@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-function Database() {
-  return <Text>Database</Text>;
+function Home() {
+  return <Text>Home</Text>;
 }
 
-export default Database;
+export default Home;
