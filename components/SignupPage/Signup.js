@@ -7,8 +7,11 @@ import {
   Pressable,
   Alert,
 } from "react-native";
+
+//Firestore imports
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../../database/Database";
+import { auth, db } from "../../database/Database";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 
 function Signup({ navigation }) {
   const [name, setName] = useState();
@@ -28,6 +31,13 @@ function Signup({ navigation }) {
               await updateProfile(auth.currentUser, { displayName: name });
 
               Alert.alert("User Registered Successfully!");
+              const currUserId = auth.currentUser.uid;
+
+              const docRef = await setDoc(doc(db, "users", currUserId), {
+                name: name,
+                email: email,
+              });
+
               navigation.navigate("Login");
             })
             .catch((err) => {

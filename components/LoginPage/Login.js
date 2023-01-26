@@ -7,8 +7,10 @@ import {
   Pressable,
   Alert,
 } from "react-native";
+
+//Firebase imports
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../database/Database";
+import { auth, db } from "../../database/Database";
 
 function Login({ navigation }) {
   const [name, setName] = React.useState();
@@ -21,7 +23,7 @@ function Login({ navigation }) {
     } else {
       try {
         signInWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
+          .then(async (userCredential) => {
             const user = userCredential.user;
             Alert.alert("User Logged In!");
 
