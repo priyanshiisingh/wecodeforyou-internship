@@ -68,7 +68,7 @@ function Signup({ navigation }) {
   };
 
   return (
-    <View>
+    <View style={styles.mainDiv}>
       <TextInput
         style={styles.inputTop}
         onChangeText={(UserName) => setName(UserName)}
@@ -125,7 +125,7 @@ function Signup({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  image: {
+  mainDiv: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

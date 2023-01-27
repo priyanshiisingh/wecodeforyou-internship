@@ -50,7 +50,7 @@ function Login({ navigation }) {
   };
 
   return (
-    <View>
+    <View style={styles.mainDiv}>
       <TextInput
         style={styles.inputTop}
         onChangeText={(UserEmail) => setEmail(UserEmail)}
@@ -83,7 +83,7 @@ function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  image: {
+  mainDiv: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
