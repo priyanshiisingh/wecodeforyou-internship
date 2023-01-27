@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
 //Firebase imports
@@ -6,9 +6,9 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../database/Database";
 
 function Dashboard() {
-  var name;
-  var email;
-  var logId;
+  const [name, setName] = React.useState();
+  const [email, setEmail] = React.useState();
+  const [id, setId] = React.useState();
   async function fetchUserInfo() {
     const userId = auth.currentUser.uid;
     console.log(userId);
@@ -16,27 +16,28 @@ function Dashboard() {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-      name = docSnap.data.name;
-      email = docSnap.data.email;
-      logId = userId;
+      // console.log("Document data:", docSnap.data());
+      var data = docSnap.data();
+      console.log(data);
+
+      setName(data.name);
+      setEmail(data.email);
+      setId(userId);
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
     }
   }
 
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
   return (
     <View>
       <Text>Name : {name}</Text>
       <Text>Email : {email}</Text>
-      <Text>User Id : {logId}</Text>
-      <Pressable
-        onPress={() => {
-          fetchUserInfo();
-        }}>
-        <Text>Login</Text>
-      </Pressable>
+      <Text>User Id : {id}</Text>
     </View>
   );
 }
